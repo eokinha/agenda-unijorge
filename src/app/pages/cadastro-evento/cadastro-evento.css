@@ -1,0 +1,65 @@
+.cadastro {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 24px 0 8px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+input,
+select {
+  padding: 6px 8px;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+
+.invalido {
+  border-color: red;
+  background-color: #ffecec;
+}
+
+.erro {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+button {
+  padding: 8px 20px;
+  background-color: #1d4ed8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.lista li {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+}

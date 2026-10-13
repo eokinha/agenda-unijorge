@@ -1,0 +1,98 @@
+<section class="cadastro">
+  <h2>Novo evento</h2>
+
+  <form (ngSubmit)="salvar()">
+    <div class="campo">
+      <label for="titulo">Título do evento</label>
+      <input
+        type="text"
+        id="titulo"
+        name="titulo"
+        [(ngModel)]="titulo"
+        (blur)="tocado.titulo = true"
+        [class.invalido]="tocado.titulo && erroTitulo"
+      />
+      @if (tocado.titulo && erroTitulo) {
+        <span class="erro">{{ erroTitulo }}</span>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="data">Data</label>
+      <input
+        type="date"
+        id="data"
+        name="data"
+        [(ngModel)]="data"
+        (blur)="tocado.data = true"
+        [class.invalido]="tocado.data && erroData"
+      />
+      @if (tocado.data && erroData) {
+        <span class="erro">{{ erroData }}</span>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="local">Local</label>
+      <select
+        id="local"
+        name="local"
+        [(ngModel)]="local"
+        (blur)="tocado.local = true"
+        [class.invalido]="tocado.local && erroLocal"
+      >
+        <option value="">Selecione...</option>
+        @for (l of locais; track l) {
+          <option [value]="l">{{ l }}</option>
+        }
+      </select>
+      @if (tocado.local && erroLocal) {
+        <span class="erro">{{ erroLocal }}</span>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="emailResponsavel">E-mail do responsável</label>
+      <input
+        type="email"
+        id="emailResponsavel"
+        name="emailResponsavel"
+        [(ngModel)]="emailResponsavel"
+        (blur)="tocado.emailResponsavel = true"
+        [class.invalido]="tocado.emailResponsavel && erroEmail"
+      />
+      @if (tocado.emailResponsavel && erroEmail) {
+        <span class="erro">{{ erroEmail }}</span>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="vagas">Vagas</label>
+      <input
+        type="number"
+        id="vagas"
+        name="vagas"
+        [(ngModel)]="vagas"
+        (blur)="tocado.vagas = true"
+        [class.invalido]="tocado.vagas && erroVagas"
+      />
+      @if (tocado.vagas && erroVagas) {
+        <span class="erro">{{ erroVagas }}</span>
+      }
+    </div>
+
+    <button type="submit" [disabled]="temErro">Salvar</button>
+  </form>
+
+  <h3>Eventos cadastrados</h3>
+  <ul class="lista">
+    @for (evento of eventos; track evento.id) {
+      <li>
+        <strong>{{ evento.titulo }}</strong> - {{ evento.data }} - {{ evento.local }}<br />
+        {{ evento.vagas }} vagas | Responsável: {{ evento.emailResponsavel }}
+      </li>
+    } @empty {
+      <li>Nenhum evento cadastrado ainda.</li>
+    }
+  </ul>
+</section>
