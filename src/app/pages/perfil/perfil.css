@@ -1,0 +1,69 @@
+.perfil {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 24px 0 8px;
+}
+
+.email {
+  color: #555;
+}
+
+.busca {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+
+button {
+  padding: 8px 20px;
+  background-color: #1d4ed8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.sair {
+  margin-top: 12px;
+  background-color: #6b7280;
+}
+
+.erro {
+  color: red;
+  margin-top: 8px;
+}
+
+.endereco {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

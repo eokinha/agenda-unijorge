@@ -1,0 +1,41 @@
+<section class="perfil">
+  @if (perfil(); as p) {
+    <div class="cabecalho">
+      <img [src]="p.image" [alt]="p.firstName" width="64" height="64" />
+      <div>
+        <h2>Olá, {{ p.firstName }} {{ p.lastName }}</h2>
+        <p class="email">{{ p.email }}</p>
+      </div>
+    </div>
+    <button type="button" class="sair" (click)="sair()">Sair</button>
+  } @else if (erroPerfil()) {
+    <p class="erro">{{ erroPerfil() }}</p>
+  } @else {
+    <p>Carregando perfil...</p>
+  }
+
+  <h3>Buscar CEP</h3>
+  <form (ngSubmit)="buscarCep()" class="busca">
+    <input
+      type="text"
+      name="cep"
+      placeholder="40140-110"
+      maxlength="9"
+      inputmode="numeric"
+      [(ngModel)]="cep"
+    />
+    <button type="submit" [disabled]="buscando()">Buscar</button>
+  </form>
+
+  @if (erroCep()) {
+    <p class="erro">{{ erroCep() }}</p>
+  }
+
+  @if (endereco(); as e) {
+    <ul class="endereco">
+      <li><strong>Rua:</strong> {{ e.rua }}</li>
+      <li><strong>Bairro:</strong> {{ e.bairro }}</li>
+      <li><strong>Cidade:</strong> {{ e.cidade }}/{{ e.uf }}</li>
+    </ul>
+  }
+</section>

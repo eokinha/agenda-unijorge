@@ -1,0 +1,29 @@
+<section class="entrar">
+  <h2>Entrar</h2>
+
+  <form (ngSubmit)="entrar()">
+    <div class="campo">
+      <label for="usuario">Usuário</label>
+      <input type="text" id="usuario" name="usuario" autocomplete="username" [(ngModel)]="usuario" />
+    </div>
+
+    <div class="campo">
+      <label for="senha">Senha</label>
+      <input
+        type="password"
+        id="senha"
+        name="senha"
+        autocomplete="current-password"
+        [(ngModel)]="senha"
+      />
+    </div>
+
+    @if (erro()) {
+      <p class="erro">{{ erro() }}</p>
+    }
+
+    <button type="submit" [disabled]="enviando() || !usuario() || !senha()">Entrar</button>
+  </form>
+
+  <p class="dica">Usuário de teste: <code>emilys</code> / <code>emilyspass</code></p>
+</section>
