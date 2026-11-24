@@ -1,59 +1,59 @@
-# AgendaUnijorge
+# Agenda Unijorge
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
+Agenda de eventos acadêmicos feita em Angular para a disciplina de Desenvolvimento Dinâmico.
+Permite cadastrar eventos e gerenciar os participantes de cada evento.
 
-## Development server
+## Requisitos
 
-To start a local development server, run:
+- Node.js **24.15 ou mais novo** (ou 26.x) — versões mais antigas são recusadas pelo Angular CLI
+- Angular CLI 22: `npm install -g @angular/cli@22`
+
+Confira com:
 
 ```bash
+node -v
+ng version
+```
+
+## Como rodar
+
+```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Depois abra `http://localhost:4200/`.
 
-## Code scaffolding
+> Se o PowerShell disser que `ng` não é reconhecido, instale o CLI global (comando acima) ou use `npm start`.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Testes e build
 
 ```bash
-ng generate --help
+ng test     # testes com Vitest
+ng build    # gera a pasta dist/
 ```
 
-## Building
+## Telas
 
-To build the project run:
+| Rota | Tela |
+|---|---|
+| `/` | Início |
+| `/eventos` | Lista de eventos |
+| `/eventos/novo` | Cadastro de evento |
+| `/eventos/:id/participantes` | Participantes do evento (cadastrar, editar e excluir) |
 
-```bash
-ng build
+## Estrutura
+
+```
+src/app/
+  models/      Evento, Participante e as validações
+  services/    EventoService (salva eventos e participantes no localStorage)
+  pipes/       telefone, formaPagamento, iniciais, diasPara, titulo, resumo, mascaraEmail
+  pages/       home, cadastro-evento, lista-eventos, participantes, nao-encontrado
+entrega/       prints e respostas da atividade
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Observação
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+O projeto ainda não tem backend. Os dados ficam no `localStorage` do navegador, então
+para começar do zero é só limpar os dados do site no navegador.
