@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Evento } from '../../models/evento';
 import {
   LOCAIS,
@@ -9,6 +10,7 @@ import {
   validarTitulo,
   validarVagas,
 } from '../../models/evento.validacao';
+import { EventoService } from '../../services/evento-service';
 
 @Component({
   imports: [FormsModule],
@@ -17,6 +19,9 @@ import {
   templateUrl: './cadastro-evento.html',
 })
 export class CadastroEvento {
+  private eventoService = inject(EventoService);
+  private router = inject(Router);
+
   locais = LOCAIS;
 
   titulo = '';
@@ -32,8 +37,6 @@ export class CadastroEvento {
     emailResponsavel: false,
     vagas: false,
   };
-
-  eventos: Evento[] = [];
 
   get erroTitulo() {
     return validarTitulo(this.titulo);
@@ -72,8 +75,9 @@ export class CadastroEvento {
       emailResponsavel: this.emailResponsavel.trim(),
       vagas: this.vagas,
     };
-    this.eventos.push(evento);
+    this.eventoService.adicionarEvento(evento);
     this.limpar();
+    this.router.navigate(['/eventos']);
   }
 
   limpar() {

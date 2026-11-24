@@ -1,0 +1,110 @@
+.participantes-tela {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.voltar {
+  color: #1d4ed8;
+  font-size: 0.9rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 8px 0 4px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 24px 0 8px;
+}
+
+.detalhe {
+  color: #555;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+input,
+select {
+  padding: 6px 8px;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+
+.invalido {
+  border-color: red;
+  background-color: #ffecec;
+}
+
+.erro {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+button {
+  padding: 6px 16px;
+  background-color: #1d4ed8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.cancelar {
+  background-color: #6b7280;
+}
+
+.excluir {
+  background-color: #dc2626;
+}
+
+.participante {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #1d4ed8;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.dados {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.acoes {
+  display: flex;
+}

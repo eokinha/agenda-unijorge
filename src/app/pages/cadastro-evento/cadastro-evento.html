@@ -84,15 +84,4 @@
     <button type="submit" [disabled]="temErro">Salvar</button>
   </form>
 
-  <h3>Eventos cadastrados</h3>
-  <ul class="lista">
-    @for (evento of eventos; track evento.id) {
-      <li>
-        <strong>{{ evento.titulo }}</strong> - {{ evento.data }} - {{ evento.local }}<br />
-        {{ evento.vagas }} vagas | Responsável: {{ evento.emailResponsavel }}
-      </li>
-    } @empty {
-      <li>Nenhum evento cadastrado ainda.</li>
-    }
-  </ul>
 </section>

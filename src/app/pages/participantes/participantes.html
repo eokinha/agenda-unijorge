@@ -1,0 +1,107 @@
+<section class="participantes-tela">
+  @if (evento) {
+    <a routerLink="/eventos" class="voltar">&larr; Voltar para eventos</a>
+
+    <!-- cabeçalho da tela de participantes -->
+    <h2>{{ evento.titulo | titulo }}</h2>
+    <p>{{ evento.data | date: 'dd/MM/yyyy' }} · {{ evento.data | diasPara }}</p>
+    <p class="detalhe">{{ evento.data | date: "EEEE, d 'de' MMMM" }} · {{ evento.local | uppercase }}</p>
+
+    <h3>{{ editandoId ? 'Editar participante' : 'Novo participante' }}</h3>
+
+    <form (ngSubmit)="salvar()">
+      <div class="campo">
+        <label for="descricao">Descrição (nome)</label>
+        <input
+          type="text"
+          id="descricao"
+          name="descricao"
+          [(ngModel)]="descricao"
+          (blur)="tocado.descricao = true"
+          [class.invalido]="tocado.descricao && erroDescricao"
+        />
+        @if (tocado.descricao && erroDescricao) {
+          <span class="erro">{{ erroDescricao }}</span>
+        }
+      </div>
+
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          (blur)="tocado.email = true"
+          [class.invalido]="tocado.email && erroEmail"
+        />
+        @if (tocado.email && erroEmail) {
+          <span class="erro">{{ erroEmail }}</span>
+        }
+      </div>
+
+      <div class="campo">
+        <label for="telefone">Telefone</label>
+        <input
+          type="tel"
+          id="telefone"
+          name="telefone"
+          placeholder="71988887777"
+          [(ngModel)]="telefone"
+          (blur)="tocado.telefone = true"
+          [class.invalido]="tocado.telefone && erroTelefone"
+        />
+        @if (tocado.telefone && erroTelefone) {
+          <span class="erro">{{ erroTelefone }}</span>
+        }
+      </div>
+
+      <div class="campo">
+        <label for="formaPagamento">Forma de pagamento</label>
+        <select
+          id="formaPagamento"
+          name="formaPagamento"
+          [(ngModel)]="formaPagamento"
+          (blur)="tocado.formaPagamento = true"
+          [class.invalido]="tocado.formaPagamento && erroFormaPagamento"
+        >
+          <option value="">Selecione...</option>
+          @for (f of formas; track f.valor) {
+            <option [value]="f.valor">{{ f.texto }}</option>
+          }
+        </select>
+        @if (tocado.formaPagamento && erroFormaPagamento) {
+          <span class="erro">{{ erroFormaPagamento }}</span>
+        }
+      </div>
+
+      <button type="submit" [disabled]="temErro">{{ editandoId ? 'Salvar alteração' : 'Adicionar' }}</button>
+      @if (editandoId) {
+        <button type="button" class="cancelar" (click)="limpar()">Cancelar</button>
+      }
+    </form>
+
+    <h3>Participantes ({{ participantes.length }})</h3>
+
+    @for (p of participantes; track p.id) {
+      <div class="participante">
+        <span class="avatar">{{ p.descricao | iniciais }}</span>
+        <div class="dados">
+          <b>{{ p.descricao }}</b>
+          <span>{{ p.telefone | telefone }}</span>
+          <span>{{ p.email | mascaraEmail }}</span>
+          <span>{{ p.formaPagamento | formaPagamento }}</span>
+        </div>
+        <div class="acoes">
+          <button type="button" (click)="editar(p)">Editar</button>
+          <button type="button" class="excluir" (click)="excluir(p)">Excluir</button>
+        </div>
+      </div>
+    } @empty {
+      <p>Nenhum participante neste evento.</p>
+    }
+  } @else {
+    <h2>Evento não encontrado</h2>
+    <a routerLink="/eventos">Voltar para eventos</a>
+  }
+</section>

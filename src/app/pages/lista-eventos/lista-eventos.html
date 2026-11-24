@@ -1,0 +1,19 @@
+<section class="eventos">
+  <h2>Eventos cadastrados</h2>
+
+  <ul class="lista">
+    @for (evento of eventos; track evento.id) {
+      <li>
+        <strong>{{ evento.titulo | resumo: 40 | titulo }}</strong> - {{ evento.data | date: 'dd/MM/yyyy' }} - {{ evento.local | uppercase }}<br />
+        {{ evento.vagas | number }} vagas | Responsável: {{ evento.emailResponsavel }}<br />
+        <small>{{ evento.data | diasPara }} · {{ qtdParticipantes(evento.id) }} participante(s)</small>
+        <div class="acoes">
+          <a [routerLink]="['/eventos', evento.id, 'participantes']">Participantes</a>
+          <button type="button" class="excluir" (click)="excluir(evento)">Excluir</button>
+        </div>
+      </li>
+    } @empty {
+      <li>Nenhum evento cadastrado ainda. <a routerLink="/eventos/novo">Cadastrar evento</a></li>
+    }
+  </ul>
+</section>
